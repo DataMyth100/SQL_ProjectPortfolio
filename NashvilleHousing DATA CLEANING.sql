@@ -132,6 +132,21 @@ From RowNumCTE
 Where row_num > 1
 --Order by PropertyAddress
 
+
+WITH RownumCTE AS(
+SELECT *,
+ROW_NUMBER() OVER (PARTITION BY ParcelID, PropertyAddress, SalePrice, SaleDate, LegalReference
+				 ORDER BY
+					UniqueID
+					) as row_num
+FROM project1..NashvilleHousing
+)
+Delete *
+From RowNumCTE
+Where row_num > 1
+--Order by PropertyAddress
+
+
 ---------------------------------------------------------------------------------------------------------
 
 -- Delete Unused Columns
@@ -140,4 +155,4 @@ SELECT *
 FROM project1..NashvilleHousing
 
 ALTER TABLE project1..NashvilleHousing
-DROP COLUMN PropertyAddress, SaleDate,OwnerAddress
+DROP COLUMN PropertyAddress, SaleDate, OwnerAddress
