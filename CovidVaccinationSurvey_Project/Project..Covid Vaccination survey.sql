@@ -1,9 +1,3 @@
---SELECT*
---FROM project1..CovidDeaths
---UNION	
---SELECT*
---FROM project1..CovidDeaths;
-
 SELECT*
 FROM project1..CovidDeaths
 ORDER BY 3,4;
